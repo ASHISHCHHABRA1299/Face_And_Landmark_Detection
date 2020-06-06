@@ -122,8 +122,18 @@ public class MainActivity extends AppCompatActivity {
                                                             face.getContour(FirebaseVisionFaceContour.UPPER_LIP_BOTTOM).getPoints();
 
                                                     // If classification was enabled:
+                                                    Paint p3=new Paint();
+                                                    p3.setColor(Color.BLACK);
                                                     if (face.getSmilingProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                                                         float smileProb = face.getSmilingProbability();
+                                                        if(smileProb>0.5)
+                                                        {
+                                                            canvas.drawText("Smiling",bounds.exactCenterX(),bounds.exactCenterY(),p3);
+                                                        }else
+                                                        {
+                                                            canvas.drawText("Not Smiling",bounds.exactCenterX(),bounds.exactCenterY(),p3);
+                                                        }
+                                                        i.setImageBitmap(mutablebmp);
                                                     }
                                                     if (face.getRightEyeOpenProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                                                         float rightEyeOpenProb = face.getRightEyeOpenProbability();
