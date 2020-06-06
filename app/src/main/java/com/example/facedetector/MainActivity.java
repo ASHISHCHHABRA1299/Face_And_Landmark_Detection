@@ -99,8 +99,22 @@ public class MainActivity extends AppCompatActivity {
                                                     FirebaseVisionFaceLandmark leftEar = face.getLandmark(FirebaseVisionFaceLandmark.LEFT_EAR);
                                                     if (leftEar != null) {
                                                         FirebaseVisionPoint leftEarPos = leftEar.getPosition();
+                                                        Rect rect2=new Rect((int)(leftEarPos.getX()-20),(int)(leftEarPos.getX()-20),(int)(leftEarPos.getX()+20),(int)(leftEarPos.getX()+20));
+                                                        canvas.drawRect(rect2,p);
+                                                        i.setImageBitmap(mutablebmp);
                                                     }
+                                                    Paint p2=new Paint();
+                                                    p2.setColor(Color.RED);
+                                                    p2.setStyle(Paint.Style.STROKE);
+                                                    FirebaseVisionFaceLandmark rightEye = face.getLandmark(FirebaseVisionFaceLandmark.RIGHT_EYE);
+                                                    if(rightEye!=null)
+                                                    {
+                                                        FirebaseVisionPoint righteyepos=rightEye.getPosition();
+                                                        Rect rect3=new Rect((int)(righteyepos.getX()-20),(int)(righteyepos.getX()-20),(int)(righteyepos.getX()+20),(int)(righteyepos.getX()+20));
+                                                        canvas.drawRect(rect3,p2);
+                                                        i.setImageBitmap(mutablebmp);
 
+                                                    }
                                                     // If contour detection was enabled:
                                                     List<FirebaseVisionPoint> leftEyeContour =
                                                             face.getContour(FirebaseVisionFaceContour.LEFT_EYE).getPoints();
